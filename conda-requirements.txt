@@ -1,6 +1,7 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
+python=3.5.2=0
 click=6.6=py35_0
 flask=0.11.1=py35_0
 itsdangerous=0.24=py35_0
@@ -10,7 +11,6 @@ mkl=11.3.3=0
 numpy=1.11.1=py35_0
 openssl=1.0.2h=2
 pip=8.1.2=py35_0
-python=3.5.2=0
 readline=6.2=2
 setuptools=26.1.1=py35_0
 sqlite=3.13.0=0
