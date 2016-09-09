@@ -29,15 +29,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+    # Parse query parameters, use default if not specified
     year = int(request.args.get('year', 2016))
     num_entries = int(request.args.get('entries', 100))
+
+    # Generate num_entries dates for a given year with no repeats
     start_date = date(month=1, day=1, year=year).toordinal()
     end_date = date(month=12, day=31, year=year).toordinal()
-    dates = [date.fromordinal(random.randint(start_date, end_date)) for _ in range(num_entries)]
+    dates = [date.fromordinal(x) for x in numpy.random.choice(range(start_date, end_date + 1), num_entries, replace=False)]
     dates.sort()
+
+    # Generate num_entries reasons, weighted by weights
     reasons = numpy.random.choice(activities, num_entries, p=weights)
+
+    # Create a list of maps, each map represents an entry
     entries = [{'date': dates[i], 'reason': reasons[i], 'is_weekday': dates[i].weekday() <= 4} for i in
                range(num_entries)]
+
     for entry in entries:
         start_minute = random.randint(0, 59)
         if entry['is_weekday']:
